@@ -15,3 +15,8 @@ $ mix ecto.create
 ```bash
 $ mix deps.get
 ```
+
+4. Create config file for credo:
+```bash
+$ mix credo.gen.config
+```
