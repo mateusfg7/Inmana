@@ -10,3 +10,8 @@ _with database online_
 ```bash
 $ mix ecto.create
 ```
+
+3. Install dependencies:
+```bash
+$ mix deps.get
+```
