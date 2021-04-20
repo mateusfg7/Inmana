@@ -6,6 +6,8 @@ defmodule Inmana.Restaurant do
 
   @required_params [:email, :name]
 
+  @derive {Jason.Encoder, only: @required_params ++ [:id]}
+
   schema "restaurants" do
     field :email, :string
     field :name, :string
