@@ -56,3 +56,14 @@ nil
 iex> Map.get(map, "name", 5)
 5
 ```
+
+## Phoenix
+
+### Use UUID as primary key
+
+On `config/config.exs` add the config:
+```elixir
+config :project, Project.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+```
