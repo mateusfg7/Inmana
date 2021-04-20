@@ -28,6 +28,11 @@ $ mix credo.gen.config
 $ mix ecto.gen.migration migration_name
 ```
 
+### Run migrations
+```bash
+$ mix ecto.migrate
+```
+
 ## Elixir
 
 ### Manipulate maps
