@@ -4,6 +4,8 @@ defmodule Inmana.Restaurant do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
+  @required_params [:email, :name]
+
   schema "restaurants" do
     field :email, :string
     field :name, :string
@@ -13,8 +15,8 @@ defmodule Inmana.Restaurant do
 
   def changeset(params) do
     %__MODULE__{}
-    |> cast(params, [:email, :name])
-    |> validate_required([:email, :name])
+    |> cast(params, @required_params)
+    |> validate_required(@required_params)
     |> validate_length(:name, min: 2)
     |> validate_format(:email, ~r/@/)
     |> unique_constraint([:email])
