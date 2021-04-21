@@ -72,3 +72,35 @@ config :project, Project.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
 ```
+
+### Use resources to create default routes of a controller
+
+On `lib/project_web/router.ex`:
+```elixir
+scope "/api", ProjectWeb do
+    pipe_through :api
+
+    resources "/some-route", SomeController
+  end
+```
+
+This will create all default route for SomeController, running `mix phx.routes` we will get:
+```
+some_path  GET     /api/some-route           ProjectWeb.SomeController :index
+some_path  GET     /api/some-route/:id/edit  ProjectWeb.SomeController :edit
+some_path  GET     /api/some-route/new       ProjectWeb.SomeController :new
+some_path  GET     /api/some-route/:id       ProjectWeb.SomeController :show
+some_path  POST    /api/some-route           ProjectWeb.SomeController :create
+some_path  PATCH   /api/some-route/:id       ProjectWeb.SomeController :update
+           PUT     /api/some-route/:id       ProjectWeb.SomeController :update
+some_path  DELETE  /api/some-route/:id       ProjectWeb.SomeController :delete
+```
+
+We can pass the parameter `only` to specify the methods:
+```elixir
+scope "/api", ProjectWeb do
+    pipe_through :api
+
+    resources "/some-route", SomeController, only: [:create, :show]
+  end
+```
