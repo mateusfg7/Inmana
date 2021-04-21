@@ -14,4 +14,12 @@ defmodule InmanaWeb.SuppliesController do
       |> render("create.json", supply: supply)
     end
   end
+
+  def show(conn, %{"is" => uuid}) do
+    with {:ok, %Supply{} = supply} <- Inmana.get_supply(uuid) do
+      conn
+      |> put_status(:created)
+      |> render("show.json", supply: supply)
+    end
+  end
 end
