@@ -15,7 +15,7 @@ defmodule InmanaWeb.SuppliesController do
     end
   end
 
-  def show(conn, %{"is" => uuid}) do
+  def show(conn, %{"id" => uuid}) do
     with {:ok, %Supply{} = supply} <- Inmana.get_supply(uuid) do
       conn
       |> put_status(:created)
