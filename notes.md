@@ -104,3 +104,35 @@ scope "/api", ProjectWeb do
     resources "/some-route", SomeController, only: [:create, :show]
   end
 ```
+
+## Bamboo
+
+First add bamboo to deps on `mix.ex`:
+```elixir
+defp deps do
+  [
+    {:bamboo, "~> 2.1.0"}
+  ]
+end
+```
+
+### Use Local Adapter
+
+On `config/config.exs` add:
+```elixir
+config :inmana, Inmana.Mailer, adapter: Bamboo.LocalAdapter
+```
+
+to use in teste, add the config on `config/test.exs`:
+```elixir
+config :inmana, Inmana.Mailer, adapter: Bamboo.TestAdapter
+```
+
+### Use dev router to see sent emails
+
+On `lib/project_web/router.ex`:
+```elixir
+if Mix.env() == :dev do
+  forward "/sent_emails", Bamboo.SentEmailViewerPlug
+end
+```
