@@ -159,3 +159,21 @@ defmodule Inmana.Supplies.Scheduler do
   end
 end
 ```
+
+## Tests
+
+### Common tests
+```elixir
+use ExUnit.Case
+
+describe "function/1" do
+  test "description for this test" do
+    params = "The params for the function"
+    expected_result = "Expected result"
+
+    result = Module.function(params)
+
+    assert result == expected_result
+  end
+end
+```
