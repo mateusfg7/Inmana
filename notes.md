@@ -251,3 +251,33 @@ describe "create/2" do
     assert response == expected_response
   end
 end
+```
+
+### View tests
+
+```elixir
+use ProjectWeb.ConnCase
+
+import Phoenix.View
+
+alias ProjectWeb.UserView
+
+describe "render/2" do
+  test "renders create.json" do
+    params = %{name: "Siri cascudo", email: "siri@cascudo.com"}
+    {:ok, restaurant} = Project.create_user(params)
+
+    response = render(UserView, "create.json", user: user)
+
+    assert %{
+              message: "User Created!",
+              user: %User{
+                email: "siri@cascudo.com",
+                id: _id,
+                name: "Siri cascudo"
+              }
+            } = response
+  end
+end
+
+```
