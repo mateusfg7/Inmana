@@ -1,5 +1,5 @@
 defmodule InmanaWeb.RestaurantsViewTest do
-  use InmanaWeb.ConnCase
+  use InmanaWeb.ConnCase, async: true
 
   import Phoenix.View
 
